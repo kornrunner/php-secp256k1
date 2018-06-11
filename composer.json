@@ -1,6 +1,6 @@
 {
     "name": "kornrunner/secp256k1",
-    "description": "Puse PHP secp256k1",
+    "description": "Pure PHP secp256k1",
     "type": "library",
     "require": {
         "php": ">=7.1",
