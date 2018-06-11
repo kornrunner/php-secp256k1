@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace kornrunner\Secp256k1\Signature;
+namespace kornrunner\Signature;
 
 use GMP;
-use kornrunner\Secp256k1\Serializer\HexSignatureSerializer;
-use kornrunner\Secp256k1\Signature\SignatureInterface;
+use kornrunner\Serializer\HexSignatureSerializer;
+use kornrunner\Signature\SignatureInterface;
 use Mdanter\Ecc\Crypto\Signature\Signature as EccSignature;
 
 class Signature extends EccSignature implements SignatureInterface

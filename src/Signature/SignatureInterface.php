@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace kornrunner\Secp256k1\Signature;
+namespace kornrunner\Signature;
 
 use Mdanter\Ecc\Crypto\Signature\SignatureInterface as EccSignatureInterface;
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace kornrunner\Secp256k1\Serializer;
+namespace kornrunner\Serializer;
 
 use Mdanter\Ecc\Crypto\Key\PrivateKeyInterface;
 use Mdanter\Ecc\Primitives\Point;

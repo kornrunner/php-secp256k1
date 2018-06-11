@@ -2,7 +2,7 @@
 
 namespace kornrunner;
 
-use kornrunner\Secp256k1\Secp256k1;
+use kornrunner\Secp256k1;
 
 class Secp256k1Test extends TestCase
 {

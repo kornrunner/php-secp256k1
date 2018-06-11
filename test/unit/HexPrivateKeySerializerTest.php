@@ -2,7 +2,7 @@
 
 namespace kornrunner;
 
-use kornrunner\Secp256k1\Serializer\HexPrivateKeySerializer;
+use kornrunner\Serializer\HexPrivateKeySerializer;
 use Mdanter\Ecc\Curves\CurveFactory;
 use Mdanter\Ecc\Curves\SecgCurve;
 

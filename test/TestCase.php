@@ -4,7 +4,7 @@ namespace kornrunner;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
-use kornrunner\Secp256k1\Serializer\HexSignatureSerializer;
+use kornrunner\Serializer\HexSignatureSerializer;
 
 class TestCase extends BaseTestCase
 {

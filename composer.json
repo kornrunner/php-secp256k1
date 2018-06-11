@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "kornrunner\\Secp256k1\\": "src/"
+            "kornrunner\\": "src/"
         }
     },
     "autoload-dev": {

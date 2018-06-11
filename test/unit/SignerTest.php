@@ -2,8 +2,8 @@
 
 namespace kornrunner;
 
-use kornrunner\Secp256k1\Serializer\HexPrivateKeySerializer;
-use kornrunner\Secp256k1\Signature\Signer;
+use kornrunner\Serializer\HexPrivateKeySerializer;
+use kornrunner\Signature\Signer;
 use Mdanter\Ecc\Curves\CurveFactory;
 use Mdanter\Ecc\Curves\SecgCurve;
 use Mdanter\Ecc\EccFactory;

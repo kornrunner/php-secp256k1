@@ -1,9 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace kornrunner\Secp256k1\Signature;
+namespace kornrunner\Signature;
 
 use GMP;
-use kornrunner\Secp256k1\Signature\Signature;
 use Mdanter\Ecc\Crypto\Key\PrivateKeyInterface;
 use Mdanter\Ecc\Crypto\Key\PublicKeyInterface;
 use Mdanter\Ecc\Crypto\Signature\SignatureInterface;

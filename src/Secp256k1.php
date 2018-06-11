@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace kornrunner\Secp256k1;
+namespace kornrunner;
 
 use InvalidArgumentException;
-use kornrunner\Secp256k1\Serializer\HexPrivateKeySerializer;
-use kornrunner\Secp256k1\Signature\Signer;
+use kornrunner\Serializer\HexPrivateKeySerializer;
+use kornrunner\Signature\Signer;
 use Mdanter\Ecc\Crypto\Signature\SignatureInterface;
 use Mdanter\Ecc\Curves\CurveFactory;
 use Mdanter\Ecc\Curves\SecgCurve;
