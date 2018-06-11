@@ -7,7 +7,8 @@
         "mdanter/ecc": "~0.5"
     },
     "require-dev": {
-        "phpunit/phpunit": "~6.0"
+        "phpunit/phpunit": "~6.0",
+        "php-coveralls/php-coveralls": "^2.1"
     },
     "autoload": {
         "psr-4": {
