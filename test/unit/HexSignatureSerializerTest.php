@@ -7,16 +7,12 @@ use InvalidArgumentException;
 class HexSignatureSerializerTest extends TestCase
 {
 
-    public function testParse() {
-        $sig = $this->sigSerializer->parse($this->signed);
-        $r = $sig->getR();
-        $s = $sig->getS();
-        $this->assertEquals($this->signed, gmp_strval($r, 16) . gmp_strval($s, 16));
-
-        $sig = $this->sigSerializer->parse('0x' . $this->signed);
-        $r = $sig->getR();
-        $s = $sig->getS();
-        $this->assertEquals($this->signed, gmp_strval($r, 16) . gmp_strval($s, 16));
+    /**
+     * @dataProvider data
+     */
+    public function testParse(string $input, string $expect) {
+        $sig = $this->sigSerializer->parse($input);
+        $this->assertEquals($expect, gmp_strval($sig->getR(), 16) . gmp_strval($sig->getS(), 16));
     }
 
     public function testParseException() {
@@ -24,13 +20,20 @@ class HexSignatureSerializerTest extends TestCase
         $this->sigSerializer->parse($this->signed . random_bytes(3));
     }
 
-    public function testSerialize() {
-        $sig = $this->sigSerializer->parse($this->signed);
-        $signed = $this->sigSerializer->serialize($sig);
-        $this->assertEquals($this->signed, $signed);
-
-        $sig = $this->sigSerializer->parse('0x' . $this->signed);
-        $signed = $this->sigSerializer->serialize($sig);
-        $this->assertEquals($this->signed, $signed);
+    /**
+     * @dataProvider data
+     */
+    public function testSerialize(string $input, string $expect) {
+        $parsed = $this->sigSerializer->parse($input);
+        $signed = $this->sigSerializer->serialize($parsed);
+        $this->assertEquals($expect, $signed);
     }
+
+    public static function data(): array {
+        return [
+            ['f67118680df5993e8efca4d3ecc4172ca4ac5e3e007ea774293e37386480970347427f3633371c1a30abbb2b717dbd78ef63d5b19b5a951f9d681cccdd520320', 'f67118680df5993e8efca4d3ecc4172ca4ac5e3e007ea774293e37386480970347427f3633371c1a30abbb2b717dbd78ef63d5b19b5a951f9d681cccdd520320'],
+            ['0xf67118680df5993e8efca4d3ecc4172ca4ac5e3e007ea774293e37386480970347427f3633371c1a30abbb2b717dbd78ef63d5b19b5a951f9d681cccdd520320', 'f67118680df5993e8efca4d3ecc4172ca4ac5e3e007ea774293e37386480970347427f3633371c1a30abbb2b717dbd78ef63d5b19b5a951f9d681cccdd520320'],
+        ];
+    }
+
 }
