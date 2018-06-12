@@ -18,19 +18,33 @@ class HexPrivateKeySerializerTest extends TestCase
         $this->serializer = new HexPrivateKeySerializer($generator);
     }
 
-    public function testParse() {
-        $key = $this->serializer->parse($this->testPrivateKey);
-        $this->assertEquals(gmp_init($this->testPrivateKey, 16), $key->getSecret());
-
-        $key = $this->serializer->parse('0x' . $this->testPrivateKey);
-        $this->assertEquals(gmp_init($this->testPrivateKey, 16), $key->getSecret());
+    /**
+     * @dataProvider parse
+     */
+    public function testParse(string $privateKey) {
+        $key = $this->serializer->parse($privateKey);
+        $this->assertEquals(gmp_init($privateKey, 16), $key->getSecret());
     }
 
-    public function testSerialize() {
-        $key = $this->serializer->serialize($this->serializer->parse($this->testPrivateKey));
-        $this->assertEquals($this->testPrivateKey, $key);
+    public static function parse(): array {
+        return [
+            ['d0459987fdde1f41e524fddbf4b646cd9d3bea7fd7d63feead3f5dfce6174a3d'],
+            ['0xd0459987fdde1f41e524fddbf4b646cd9d3bea7fd7d63feead3f5dfce6174a3d'],
+        ];
+    }
 
-        $key = $this->serializer->serialize($this->serializer->parse('0x' . $this->testPrivateKey));
-        $this->assertEquals($this->testPrivateKey, $key);
+    /**
+     * @dataProvider serialize
+     */
+    public function testSerialize(string $privateKey, string $expect) {
+        $key = $this->serializer->serialize($this->serializer->parse($privateKey));
+        $this->assertEquals($expect, $key);
+    }
+
+    public static function serialize(): array {
+        return [
+            ['d0459987fdde1f41e524fddbf4b646cd9d3bea7fd7d63feead3f5dfce6174a3d', 'd0459987fdde1f41e524fddbf4b646cd9d3bea7fd7d63feead3f5dfce6174a3d'],
+            ['0xd0459987fdde1f41e524fddbf4b646cd9d3bea7fd7d63feead3f5dfce6174a3d', 'd0459987fdde1f41e524fddbf4b646cd9d3bea7fd7d63feead3f5dfce6174a3d'],
+        ];
     }
 }
