@@ -32,24 +32,6 @@ class Secp256k1
         $this->algorithm = $hashAlgorithm;
     }
 
-    public function __get(string $name) {
-        $method = 'get' . ucfirst($name);
-
-        if (method_exists($this, $method)) {
-            return call_user_func_array([$this, $method], []);
-        }
-        return false;
-    }
-
-    public function __set(string $name, $value) {
-        $method = 'set' . ucfirst($name);
-
-        if (method_exists($this, $method)) {
-            return call_user_func_array([$this, $method], [$value]);
-        }
-        return false;
-    }
-
     public function sign(string $hash, string $privateKey, array $options=[]): SignatureInterface {
         $key = $this->deserializer->parse($privateKey);
         $hex_hash = gmp_init($hash, 16);
