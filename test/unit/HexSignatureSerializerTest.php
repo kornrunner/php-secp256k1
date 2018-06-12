@@ -2,6 +2,8 @@
 
 namespace kornrunner;
 
+use InvalidArgumentException;
+
 class HexSignatureSerializerTest extends TestCase
 {
 
@@ -15,6 +17,11 @@ class HexSignatureSerializerTest extends TestCase
         $r = $sig->getR();
         $s = $sig->getS();
         $this->assertEquals($this->signed, gmp_strval($r, 16) . gmp_strval($s, 16));
+    }
+
+    public function testParseException() {
+        $this->expectException(InvalidArgumentException::class);
+        $this->sigSerializer->parse($this->signed . random_bytes(3));
     }
 
     public function testSerialize() {
