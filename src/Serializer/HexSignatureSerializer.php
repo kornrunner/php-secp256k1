@@ -12,7 +12,7 @@ class HexSignatureSerializer
         $r = $signature->getR();
         $s = $signature->getS();
 
-        return gmp_strval($r, 16) . gmp_strval($s, 16);
+        return str_pad(gmp_strval($r, 16), 64, '0', STR_PAD_LEFT) . str_pad(gmp_strval($s, 16), 64, '0', STR_PAD_LEFT);
     }
 
     public function parse(string $binary): SignatureInterface {
