@@ -8,7 +8,7 @@ class Secp256k1Test extends TestCase
 {
     protected $secp256k1;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->secp256k1 = new Secp256k1();
     }
