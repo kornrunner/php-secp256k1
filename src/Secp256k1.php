@@ -37,17 +37,15 @@ class Secp256k1
         $hex_hash = gmp_init($hash, 16);
 
         if (!isset($options['n'])) {
-            $random = RandomGeneratorFactory::getHmacRandomGenerator($key, $hex_hash, $this->algorithm);
-            $n = $this->generator->getOrder();
-            $randomK = $random->generate($n);
-
-            $options['n']  = $n;
+            $options['n'] = $this->generator->getOrder();
         }
         if (!isset($options['canonical'])) {
             $options['canonical'] = true;
         }
         $signer = new Signer($this->adapter, $options);
 
+        $random = RandomGeneratorFactory::getHmacRandomGenerator($key, $hex_hash, $this->algorithm);
+        $randomK = $random->generate($options['n']);
         return $signer->sign($key, $hex_hash, $randomK);
     }
 
