@@ -3,14 +3,14 @@
 namespace kornrunner\Serializer;
 
 use Mdanter\Ecc\Crypto\Key\PrivateKeyInterface;
-use Mdanter\Ecc\Primitives\Point;
+use Mdanter\Ecc\Primitives\GeneratorPoint;
 use Mdanter\Ecc\Serializer\PrivateKey\PrivateKeySerializerInterface;
 
 class HexPrivateKeySerializer implements PrivateKeySerializerInterface
 {
     protected $generator;
 
-    public function __construct(Point $generator) {
+    public function __construct(GeneratorPoint $generator) {
         $this->generator = $generator;
     }
 
