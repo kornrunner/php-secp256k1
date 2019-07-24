@@ -1,4 +1,4 @@
-# php-secp256k1 [![Build Status](https://travis-ci.org/kornrunner/php-secp256k1.svg?branch=master)](https://travis-ci.org/kornrunner/php-secp256k1)  [![Coverage Status](https://coveralls.io/repos/github/kornrunner/php-secp256k1/badge.svg?branch=master)](https://coveralls.io/github/kornrunner/php-secp256k1?branch=master)
+# php-secp256k1 [![Build Status](https://travis-ci.org/kornrunner/php-secp256k1.svg?branch=master)](https://travis-ci.org/kornrunner/php-secp256k1) [![Build status](https://ci.appveyor.com/api/projects/status/200tc0s5o61r99kf/branch/master?svg=true)](https://ci.appveyor.com/project/kornrunner/php-secp256k1/branch/master) [![Coverage Status](https://coveralls.io/repos/github/kornrunner/php-secp256k1/badge.svg?branch=master)](https://coveralls.io/github/kornrunner/php-secp256k1?branch=master)
 
 ```lang=bash
 $ composer require kornrunner/secp256k1
