@@ -4,7 +4,7 @@
     "keywords": ["secp256k1", "elliptic", "curve", "ecc"],
     "type": "library",
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "mdanter/ecc": "^0.5"
     },
     "require-dev": {
