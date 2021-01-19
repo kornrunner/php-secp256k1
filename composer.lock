@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "163b01dad760e0d0bc76dd9c9a4eec91",
+    "content-hash": "1f191925192e6653da31d4cacd0ae5da",
     "packages": [
         {
             "name": "fgrosse/phpasn1",
@@ -83,25 +83,25 @@
         },
         {
             "name": "mdanter/ecc",
-            "version": "v0.5.2",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpecc/phpecc.git",
-                "reference": "b95f25cc1bacc83a9f0ccd375900b7cfd343029e"
+                "reference": "34e2eec096bf3dcda814e8f66dd91ae87a2db7cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpecc/phpecc/zipball/b95f25cc1bacc83a9f0ccd375900b7cfd343029e",
-                "reference": "b95f25cc1bacc83a9f0ccd375900b7cfd343029e",
+                "url": "https://api.github.com/repos/phpecc/phpecc/zipball/34e2eec096bf3dcda814e8f66dd91ae87a2db7cd",
+                "reference": "34e2eec096bf3dcda814e8f66dd91ae87a2db7cd",
                 "shasum": ""
             },
             "require": {
                 "ext-gmp": "*",
                 "fgrosse/phpasn1": "^2.0",
-                "php": "^7.0"
+                "php": "^7.0||^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0",
+                "phpunit/phpunit": "^6.0||^8.0||^9.0",
                 "squizlabs/php_codesniffer": "^2.0",
                 "symfony/yaml": "^2.6|^3.0"
             },
@@ -153,9 +153,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpecc/phpecc/issues",
-                "source": "https://github.com/phpecc/phpecc/tree/master"
+                "source": "https://github.com/phpecc/phpecc/tree/v1.0.0"
             },
-            "time": "2018-12-03T18:17:01+00:00"
+            "time": "2021-01-16T19:42:14+00:00"
         }
     ],
     "packages-dev": [
