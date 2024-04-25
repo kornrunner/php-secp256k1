@@ -8,7 +8,7 @@ use kornrunner\Signature\Signer;
 use Mdanter\Ecc\Crypto\Signature\SignatureInterface;
 use Mdanter\Ecc\Curves\CurveFactory;
 use Mdanter\Ecc\Curves\SecgCurve;
-use Mdanter\Ecc\EccFactory;
+use Mdanter\Ecc\Math\ConstantTimeMath;
 use Mdanter\Ecc\Primitives\PointInterface;
 use Mdanter\Ecc\Random\RandomGeneratorFactory;
 
@@ -25,7 +25,7 @@ class Secp256k1
     protected $algorithm;
 
     public function __construct(string $hashAlgorithm='sha256') {
-        $this->adapter = EccFactory::getAdapter();
+        $this->adapter = new ConstantTimeMath();
         $this->generator = CurveFactory::getGeneratorByName(SecgCurve::NAME_SECP_256K1);
         $this->curve = $this->generator->getCurve();
         $this->deserializer = new HexPrivateKeySerializer($this->generator);

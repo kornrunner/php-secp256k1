@@ -6,14 +6,14 @@ use kornrunner\Serializer\HexPrivateKeySerializer;
 use kornrunner\Signature\Signer;
 use Mdanter\Ecc\Curves\CurveFactory;
 use Mdanter\Ecc\Curves\SecgCurve;
-use Mdanter\Ecc\EccFactory;
+use Mdanter\Ecc\Math\ConstantTimeMath;
 use Mdanter\Ecc\Random\RandomGeneratorFactory;
 
 class SignerTest extends TestCase
 {
 
     public function testSign() {
-        $adapter = EccFactory::getAdapter();
+        $adapter = new ConstantTimeMath();
         $generator = CurveFactory::getGeneratorByName(SecgCurve::NAME_SECP_256K1);
         $deserializer = new HexPrivateKeySerializer($generator);
         $key = $deserializer->parse($this->testPrivateKey);
@@ -45,7 +45,7 @@ class SignerTest extends TestCase
     }
 
     public function testVerify() {
-        $adapter = EccFactory::getAdapter();
+        $adapter = new ConstantTimeMath();
         $generator = CurveFactory::getGeneratorByName(SecgCurve::NAME_SECP_256K1);
         $deserializer = new HexPrivateKeySerializer($generator);
         $key = $deserializer->parse($this->testPrivateKey);

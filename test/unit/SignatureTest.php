@@ -7,14 +7,14 @@ use kornrunner\Signature\Signer;
 use Mdanter\Ecc\Crypto\Signature\Signature;
 use Mdanter\Ecc\Curves\CurveFactory;
 use Mdanter\Ecc\Curves\SecgCurve;
-use Mdanter\Ecc\EccFactory;
+use Mdanter\Ecc\Math\ConstantTimeMath;
 use Mdanter\Ecc\Random\RandomGeneratorFactory;
 
 class SignatureTest extends TestCase
 {
 
     public function testToHex() {
-        $adapter = EccFactory::getAdapter();
+        $adapter = new ConstantTimeMath();
         $generator = CurveFactory::getGeneratorByName(SecgCurve::NAME_SECP_256K1);
         $deserializer = new HexPrivateKeySerializer($generator);
         $key = $deserializer->parse($this->testPrivateKey);
