@@ -50,9 +50,13 @@ use kornrunner\Secp256k1;
 
 $secp256k1 = new Secp256k1();
 
-// signature was created by sign method
+// signature can be a SignatureInterface object created by sign method
 // hash and publicKey are hex strings
 $isVerified = $secp256k1->verify($hash, $signature, $publicKey);
+
+// or signature can be a hex string directly
+$signatureString = 'f67118680df5993e8efca4d3ecc4172ca4ac5e3e007ea774293e37386480970347427f3633371c1a30abbb2b717dbd78ef63d5b19b5a951f9d681cccdd520320';
+$isVerified = $secp256k1->verify($hash, $signatureString, $publicKey);
 ```
 
 ## License

@@ -68,4 +68,28 @@ class Secp256k1Test extends TestCase
         ];
     }
 
+    /**
+     * @dataProvider verifyWithStringSignature
+     */
+    public function testVerifyWithStringSignature(string $message, string $signatureString, string $publicKey) {
+        $this->assertTrue($this->secp256k1->verify($message, $signatureString, $publicKey));
+    }
+
+    public static function verifyWithStringSignature(): array {
+        return [
+            ['98d22cdb65bbf8a392180cd2ee892b0a971c47e7d29daf31a3286d006b9db4dc', 'f67118680df5993e8efca4d3ecc4172ca4ac5e3e007ea774293e37386480970347427f3633371c1a30abbb2b717dbd78ef63d5b19b5a951f9d681cccdd520320', '04cf60398ae73fd947ffe120fba68947ec741fe696438d68a2e52caca139613ff94f220cd0d3e886f95aa226f2ad2b86be1dd5cda2813fd505d1f6a8f552904864'],
+            ['710aee292b0f1749aaa0cfef67111e2f716afbdb475e7f250bdb80c6655b0a66', '8d8bfd01c48454b5b3fed2361cbd0e8c3282d5bd2e26762e4c9dfbe1ef35f3256d6a5dc397934b5544835f34ff24263cbc00bdd516b6f0df3f29cdf6c779ccfb', '04cf60398ae73fd947ffe120fba68947ec741fe696438d68a2e52caca139613ff94f220cd0d3e886f95aa226f2ad2b86be1dd5cda2813fd505d1f6a8f552904864'],
+            // Test with 0x prefix
+            ['98d22cdb65bbf8a392180cd2ee892b0a971c47e7d29daf31a3286d006b9db4dc', '0xf67118680df5993e8efca4d3ecc4172ca4ac5e3e007ea774293e37386480970347427f3633371c1a30abbb2b717dbd78ef63d5b19b5a951f9d681cccdd520320', '04cf60398ae73fd947ffe120fba68947ec741fe696438d68a2e52caca139613ff94f220cd0d3e886f95aa226f2ad2b86be1dd5cda2813fd505d1f6a8f552904864'],
+        ];
+    }
+
+    public function testVerifyWithInvalidStringSignature() {
+        $message = '98d22cdb65bbf8a392180cd2ee892b0a971c47e7d29daf31a3286d006b9db4dc';
+        $invalidSignature = 'aaaa18680df5993e8efca4d3ecc4172ca4ac5e3e007ea774293e37386480970347427f3633371c1a30abbb2b717dbd78ef63d5b19b5a951f9d681cccdd520320';
+        $publicKey = '04cf60398ae73fd947ffe120fba68947ec741fe696438d68a2e52caca139613ff94f220cd0d3e886f95aa226f2ad2b86be1dd5cda2813fd505d1f6a8f552904864';
+
+        $this->assertFalse($this->secp256k1->verify($message, $invalidSignature, $publicKey));
+    }
+
 }

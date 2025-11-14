@@ -4,6 +4,7 @@ namespace kornrunner;
 
 use InvalidArgumentException;
 use kornrunner\Serializer\HexPrivateKeySerializer;
+use kornrunner\Serializer\HexSignatureSerializer;
 use kornrunner\Signature\Signer;
 use Mdanter\Ecc\Crypto\Signature\SignatureInterface;
 use Mdanter\Ecc\Curves\CurveFactory;
@@ -24,11 +25,14 @@ class Secp256k1
 
     protected $algorithm;
 
+    protected $signatureSerializer;
+
     public function __construct(string $hashAlgorithm='sha256') {
         $this->adapter = new ConstantTimeMath();
         $this->generator = CurveFactory::getGeneratorByName(SecgCurve::NAME_SECP_256K1);
         $this->curve = $this->generator->getCurve();
         $this->deserializer = new HexPrivateKeySerializer($this->generator);
+        $this->signatureSerializer = new HexSignatureSerializer();
         $this->algorithm = $hashAlgorithm;
     }
 
@@ -49,8 +53,12 @@ class Secp256k1
         return $signer->sign($key, $hex_hash, $randomK);
     }
 
-    public function verify(string $hash, SignatureInterface $signature, string $publicKey): bool
+    public function verify(string $hash, SignatureInterface|string $signature, string $publicKey): bool
     {
+        if (is_string($signature)) {
+            $signature = $this->signatureSerializer->parse($signature);
+        }
+
         $gmpKey = $this->decodePoint($publicKey);
         $key = $this->generator->getPublickeyFrom($gmpKey->getX(), $gmpKey->getY());
         $hex_hash = gmp_init($hash, 16);
