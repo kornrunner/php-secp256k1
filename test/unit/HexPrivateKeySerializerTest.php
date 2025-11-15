@@ -5,6 +5,7 @@ namespace kornrunner;
 use kornrunner\Serializer\HexPrivateKeySerializer;
 use Mdanter\Ecc\Curves\CurveFactory;
 use Mdanter\Ecc\Curves\SecgCurve;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class HexPrivateKeySerializerTest extends TestCase
 {
@@ -18,9 +19,7 @@ class HexPrivateKeySerializerTest extends TestCase
         $this->serializer = new HexPrivateKeySerializer($generator);
     }
 
-    /**
-     * @dataProvider parse
-     */
+    #[DataProvider('parse')]
     public function testParse(string $privateKey) {
         $key = $this->serializer->parse($privateKey);
         $this->assertEquals(gmp_init($privateKey, 16), $key->getSecret());
@@ -33,9 +32,7 @@ class HexPrivateKeySerializerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider serialize
-     */
+    #[DataProvider('serialize')]
     public function testSerialize(string $privateKey, string $expect) {
         $key = $this->serializer->serialize($this->serializer->parse($privateKey));
         $this->assertEquals($expect, $key);

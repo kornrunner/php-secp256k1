@@ -3,13 +3,12 @@
 namespace kornrunner;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class HexSignatureSerializerTest extends TestCase
 {
 
-    /**
-     * @dataProvider data
-     */
+    #[DataProvider('data')]
     public function testParse(string $input, string $expect) {
         $sig = $this->sigSerializer->parse($input);
         $this->assertEquals($expect, gmp_strval($sig->getR(), 16) . gmp_strval($sig->getS(), 16));
@@ -20,9 +19,7 @@ class HexSignatureSerializerTest extends TestCase
         $this->sigSerializer->parse($this->signed . random_bytes(3));
     }
 
-    /**
-     * @dataProvider data
-     */
+    #[DataProvider('data')]
     public function testSerialize(string $input, string $expect) {
         $parsed = $this->sigSerializer->parse($input);
         $signed = $this->sigSerializer->serialize($parsed);

@@ -3,6 +3,7 @@
 namespace kornrunner;
 
 use kornrunner\Secp256k1;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class Secp256k1Test extends TestCase
 {
@@ -13,9 +14,7 @@ class Secp256k1Test extends TestCase
         $this->secp256k1 = new Secp256k1();
     }
 
-    /**
-     * @dataProvider sign
-     */
+    #[DataProvider('sign')]
     public function testSign(string $message, string $key, array $expected) {
         $signature = $this->secp256k1->sign($message, $key);
 
@@ -53,9 +52,7 @@ class Secp256k1Test extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider verify
-     */
+    #[DataProvider('verify')]
     public function testVerify(string $message, string $key, string $publicKey) {
         $signature = $this->secp256k1->sign($message, $key);
         $this->assertTrue($this->secp256k1->verify($message, $signature, $publicKey));
@@ -68,9 +65,7 @@ class Secp256k1Test extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider verifyWithStringSignature
-     */
+    #[DataProvider('verifyWithStringSignature')]
     public function testVerifyWithStringSignature(string $message, string $signatureString, string $publicKey) {
         $this->assertTrue($this->secp256k1->verify($message, $signatureString, $publicKey));
     }
